@@ -728,8 +728,6 @@
 
         </div>
     </div>
-
-
     <script>
     /* ---- STARS ---- */
     const canvas = document.getElementById('stars-canvas');
@@ -764,53 +762,27 @@
     window.addEventListener('resize', initStars);
     initStars();
 
-    /* ---- YOUTUBE PLAYER ---- */
-    var ytPlayer;
-    var musicReady = false;
+    /* ---- AUDIO ---- */
+    var audio = document.getElementById('bgMusic');
 
-    window.onYouTubeIframeAPIReady = function() {
-        ytPlayer = new YT.Player('yt-player', {
-            videoId: 'DSJiCdqIIa8',
-            playerVars: {
-                autoplay: 0,
-                controls: 0,
-                rel: 0,
-                modestbranding: 1,
-                loop: 1,
-                playlist: 'zKr0XtVlGec'
-            },
-            events: {
-                onReady: function() { musicReady = true; },
-                onStateChange: function(e) {
-                    var disc = document.getElementById('vinylDisc');
-                    var icon = document.getElementById('vinylIcon');
-                    var wrap = document.getElementById('vinyl-wrapper');
-                    if (e.data === YT.PlayerState.PLAYING) {
-                        disc.classList.add('spinning');
-                        wrap.classList.add('playing');
-                        icon.textContent = '❙❙ pause';
-                    } else {
-                        disc.classList.remove('spinning');
-                        wrap.classList.remove('playing');
-                        icon.textContent = '▶ play';
-                    }
-                }
-            }
+    function playMusic() {
+        audio.play().then(function() {
+            document.getElementById('vinylDisc').classList.add('spinning');
+            document.getElementById('vinyl-wrapper').classList.add('playing');
+            document.getElementById('vinylIcon').textContent = '❙❙ pause';
+        }).catch(function(e) {
+            console.log('audio error:', e);
         });
-    };
+    }
 
-    /* ---- TOGGLE MUSIC ---- */
     function toggleMusic() {
-        if (!ytPlayer || !musicReady) {
-            document.getElementById('vinylIcon').textContent = '⏳ جاري التحميل...';
-            return;
-        }
-        document.getElementById('vinyl-wrapper').classList.remove('pulse-me');
-        var state = ytPlayer.getPlayerState();
-        if (state === YT.PlayerState.PLAYING) {
-            ytPlayer.pauseVideo();
+        if (!audio.paused) {
+            audio.pause();
+            document.getElementById('vinylDisc').classList.remove('spinning');
+            document.getElementById('vinyl-wrapper').classList.remove('playing');
+            document.getElementById('vinylIcon').textContent = '▶ play';
         } else {
-            ytPlayer.playVideo();
+            playMusic();
         }
     }
 
@@ -828,13 +800,8 @@
         setTimeout(() => {
             document.getElementById('envelope-screen').classList.add('away');
             document.getElementById('invite-page').classList.add('visible');
-
-            // show vinyl
             document.getElementById('vinyl-wrapper').classList.add('visible');
-
-            // play music - works because user already clicked (envelope click = user gesture)
-            setTimeout(() => { playMusic(); }, 400);
-
+            setTimeout(() => { playMusic(); }, 300);
             setupReveal();
             setTimeout(() => document.getElementById('r1').classList.add('shown'), 550);
         }, 1600);
