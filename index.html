@@ -608,6 +608,66 @@
             .rsvp-card     { padding: 2rem 1.5rem; }
             #vinyl-wrapper { top: 12px; right: 12px; }
         }
+
+        /* ===== ROMANTIC SECTION ===== */
+        .romantic-box {
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        .romantic-quote {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            color: rgba(247,238,223,0.9);
+            font-size: clamp(1.2rem, 3vw, 1.55rem);
+            line-height: 1.85;
+            font-weight: 400;
+        }
+
+        .romantic-quote em {
+            color: var(--gold-light);
+            font-style: normal;
+        }
+
+        .romantic-small {
+            font-family: 'Cormorant Garamond', serif;
+            color: rgba(201,168,76,0.6);
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-top: 1.5rem;
+        }
+
+        /* ===== GAME ===== */
+        .game-box {
+            background: rgba(255,255,255,0.025);
+            border: 1px solid rgba(201,168,76,0.15);
+            border-radius: 12px;
+            padding: 2.2rem;
+            text-align: center;
+        }
+
+        .game-title {
+            font-family: 'Playfair Display', serif;
+            color: var(--cream);
+            font-size: 1.4rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .game-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            color: rgba(247,238,223,0.5);
+            font-size: 0.95rem;
+            font-style: italic;
+            margin-bottom: 2rem;
+        }
+
+
+
+        @media (max-width: 480px) {
+            .q-options { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -681,6 +741,55 @@
                 </div>
             </div>
 
+
+            <!-- ROMANTIC TEXT -->
+            <div class="reveal" id="r2b">
+                <div class="ornament"><div class="ornament-line"></div><div class="ornament-dot">◆</div><div class="ornament-line"></div></div>
+                <div class="romantic-box">
+                    <p class="romantic-quote">
+                        It was a night like any other —<br>
+                        <em>until it wasn't.</em>
+                        <br><br>
+                        Two souls, each walking their own quiet road,<br>
+                        crossed paths under the same sky<br>
+                        at the exact moment they needed someone<br>
+                        <em>without knowing they were searching.</em>
+                        <br><br>
+                        The night kept their secret.<br>
+                        It watched as strangers became<br>
+                        the most familiar thing in the world to each other.
+                        <br><br>
+                        <em>He was her calm in the chaos.<br>
+                        She was his reason to stay.</em>
+                        <br><br>
+                        And somewhere between the moonlight<br>
+                        and everything left unsaid —<br>
+                        they found home in each other. 🌙
+                    </p>
+                    <p style="font-family:'Cormorant Garamond';color:rgba(201,168,76,0.45);font-size:0.8rem;letter-spacing:4px;text-transform:uppercase;margin-top:2rem;">
+                        strangers in the night — no more
+                    </p>
+                </div>
+            </div>
+
+            <!-- MAZE GAME -->
+            <div class="reveal" id="r2c">
+                <div class="ornament"><div class="ornament-line"></div><div class="ornament-dot">◆</div><div class="ornament-line"></div></div>
+                <div class="game-box">
+                    <p class="game-title">💘 ساعد مروان يوصل لشهد!</p>
+                    <p class="game-subtitle">في متاهة الحياة — إيه اللي يوقف مروان؟ لا حاجة 😤</p>
+                    <div id="mazeStart">
+                        <div style="font-size:2.5rem;margin-bottom:1rem;">🧭</div>
+                        <p style="font-family:'Cormorant Garamond';color:rgba(247,238,223,0.6);font-style:italic;font-size:1rem;margin-bottom:1.5rem;">استخدم الأسهم أو اسحب على الموبايل</p>
+                        <button class="game-start-btn" onclick="initMaze()">ابدأ المتاهة ✦</button>
+                    </div>
+                    <div id="mazeArea" style="display:none;">
+                        <canvas id="mazeCanvas" style="border-radius:8px;max-width:100%;display:block;margin:0 auto;cursor:default;"></canvas>
+                        <p id="mazeMsg" style="font-family:'Cormorant Garamond';color:var(--gold-light);font-style:italic;font-size:1rem;margin-top:1rem;min-height:1.5rem;"></p>
+                        <button class="play-again-btn" id="mazeRetry" style="display:none;margin-top:0.8rem;" onclick="initMaze()">تاني يا مروان 🔄</button>
+                    </div>
+                </div>
+            </div>
             <div class="reveal" id="r3">
                 <div class="ornament"><div class="ornament-line"></div><div class="ornament-dot">◆</div><div class="ornament-line"></div></div>
                 <p class="section-title">The Details</p>
@@ -841,7 +950,175 @@
         document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
     }
 
-    /* ---- RSVP ---- */
+
+        /* ---- MAZE GAME ---- */
+    var CELL = 32;
+    var COLS = 13;
+    var ROWS = 11;
+    var mazeGrid = [];
+    var player = {x:0, y:0};
+    var goal   = {x: COLS-1, y: ROWS-1};
+    var mazeWon = false;
+    var touchStart = null;
+    var funnyMsgs = [
+        "مروان تاه — عادي ده مش أول مرة 😂",
+        "اتجه لشهد مش للمطبخ يا مروان! 🍕",
+        "قول بسم الله وامشي يمين 🧭",
+        "مروان بيفكر... ده أطول من المعتاد 🤔",
+        "شهد بتستنى يا ابني يلا! ⏰"
+    ];
+    var msgTimer = null;
+
+    function carve(grid, x, y) {
+        var dirs = [{dx:0,dy:-2},{dx:0,dy:2},{dx:-2,dy:0},{dx:2,dy:0}];
+        dirs.sort(function(){ return Math.random()-0.5; });
+        dirs.forEach(function(d) {
+            var nx = x + d.dx, ny = y + d.dy;
+            if (nx>=0 && nx<COLS && ny>=0 && ny<ROWS && grid[ny][nx] === 1) {
+                grid[ny - d.dy/2][nx - d.dx/2] = 0;
+                grid[ny][nx] = 0;
+                carve(grid, nx, ny);
+            }
+        });
+    }
+
+    function initMaze() {
+        mazeWon = false;
+        document.getElementById('mazeStart').style.display = 'none';
+        document.getElementById('mazeArea').style.display  = 'block';
+        document.getElementById('mazeMsg').textContent = '';
+        document.getElementById('mazeRetry').style.display = 'none';
+
+        // build grid
+        mazeGrid = [];
+        for (var r=0; r<ROWS; r++) {
+            mazeGrid.push([]);
+            for (var c=0; c<COLS; c++) mazeGrid[r].push(1);
+        }
+        mazeGrid[0][0] = 0;
+        carve(mazeGrid, 0, 0);
+        mazeGrid[ROWS-1][COLS-1] = 0;
+
+        player = {x:0, y:0};
+        goal   = {x:COLS-1, y:ROWS-1};
+
+        var canvas = document.getElementById('mazeCanvas');
+        var w = Math.min(420, window.innerWidth - 80);
+        CELL = Math.floor(w / COLS);
+        canvas.width  = CELL * COLS;
+        canvas.height = CELL * ROWS;
+
+        drawMaze();
+        startFunnyMsgs();
+    }
+
+    function drawMaze() {
+        var canvas = document.getElementById('mazeCanvas');
+        var ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#0f0a12';
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+
+        for (var r=0; r<ROWS; r++) {
+            for (var c=0; c<COLS; c++) {
+                if (mazeGrid[r][c] === 1) {
+                    ctx.fillStyle = '#2a0d1c';
+                    ctx.fillRect(c*CELL, r*CELL, CELL, CELL);
+                    ctx.strokeStyle = 'rgba(201,168,76,0.12)';
+                    ctx.strokeRect(c*CELL+0.5, r*CELL+0.5, CELL-1, CELL-1);
+                }
+            }
+        }
+
+        // goal glow
+        var gx = goal.x * CELL + CELL/2;
+        var gy = goal.y * CELL + CELL/2;
+        var grd = ctx.createRadialGradient(gx,gy,2,gx,gy,CELL);
+        grd.addColorStop(0, 'rgba(232,192,122,0.35)');
+        grd.addColorStop(1, 'transparent');
+        ctx.fillStyle = grd;
+        ctx.fillRect(goal.x*CELL, goal.y*CELL, CELL, CELL);
+
+        // draw S
+        ctx.font = 'bold ' + Math.floor(CELL*0.62) + 'px Dancing Script, serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillStyle = '#e8c97a';
+        ctx.fillText('S', goal.x*CELL + CELL/2, goal.y*CELL + CELL/2 + 1);
+
+        // draw M (player)
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold ' + Math.floor(CELL*0.58) + 'px serif';
+        ctx.fillText('M', player.x*CELL + CELL/2, player.y*CELL + CELL/2 + 1);
+    }
+
+    function movePlayer(dx, dy) {
+        if (mazeWon) return;
+        var nx = player.x + dx;
+        var ny = player.y + dy;
+        if (nx < 0 || nx >= COLS || ny < 0 || ny >= ROWS) return;
+        if (mazeGrid[ny][nx] === 1) return;
+        player.x = nx;
+        player.y = ny;
+        drawMaze();
+        if (player.x === goal.x && player.y === goal.y) {
+            mazeWon = true;
+            clearInterval(msgTimer);
+            winMaze();
+        }
+    }
+
+    function winMaze() {
+        var canvas = document.getElementById('mazeCanvas');
+        var ctx = canvas.getContext('2d');
+        ctx.fillStyle = 'rgba(15,10,18,0.75)';
+        ctx.fillRect(0,0,canvas.width,canvas.height);
+        ctx.font = 'bold ' + Math.floor(CELL*1.2) + 'px serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillStyle = '#e8c97a';
+        ctx.fillText('💍', canvas.width/2, canvas.height/2 - CELL*0.6);
+        ctx.font = 'bold ' + Math.floor(CELL*0.55) + 'px serif';
+        ctx.fillStyle = '#f7eedf';
+        ctx.fillText('وصلت يا مروان! 🎉', canvas.width/2, canvas.height/2 + CELL*0.4);
+        document.getElementById('mazeMsg').textContent = 'وصل مروان لشهد في الآخر — زي ما هيفضل يعمل طول عمره 💍';
+        document.getElementById('mazeRetry').style.display = 'inline-block';
+    }
+
+    function startFunnyMsgs() {
+        var i = 0;
+        clearInterval(msgTimer);
+        msgTimer = setInterval(function() {
+            if (!mazeWon) {
+                document.getElementById('mazeMsg').textContent = funnyMsgs[i % funnyMsgs.length];
+                i++;
+            }
+        }, 3500);
+    }
+
+    // keyboard
+    document.addEventListener('keydown', function(e) {
+        var map = {ArrowUp:[0,-1],ArrowDown:[0,1],ArrowLeft:[-1,0],ArrowRight:[1,0]};
+        var d = map[e.key];
+        if (d) { e.preventDefault(); movePlayer(d[0],d[1]); }
+    });
+
+    // touch swipe
+    document.addEventListener('touchstart', function(e) {
+        if (!document.getElementById('mazeArea') || document.getElementById('mazeArea').style.display==='none') return;
+        touchStart = {x: e.touches[0].clientX, y: e.touches[0].clientY};
+    }, {passive:true});
+
+    document.addEventListener('touchend', function(e) {
+        if (!touchStart || mazeWon) return;
+        var dx = e.changedTouches[0].clientX - touchStart.x;
+        var dy = e.changedTouches[0].clientY - touchStart.y;
+        touchStart = null;
+        if (Math.abs(dx) < 15 && Math.abs(dy) < 15) return;
+        if (Math.abs(dx) > Math.abs(dy)) movePlayer(dx>0?1:-1, 0);
+        else movePlayer(0, dy>0?1:-1);
+    }, {passive:true});
+
+    /* ---- RSVP ---- */ */
     function handleRSVP(btn) {
         if (btn.classList.contains('clicked')) return;
         btn.textContent = '🎉 See You There!';
