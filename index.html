@@ -20,6 +20,7 @@
         
         #particle-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
         .music-btn { position: fixed; top: 20px; right: 20px; z-index: 999; background: rgba(248, 215, 218, 0.2); border: 1px solid var(--blush-pink); color: var(--blush-pink); padding: 12px; border-radius: 50%; cursor: pointer; font-size: 20px; display: none; transition: all 0.3s; }
+        .music-btn:hover { background: var(--blush-pink); color: var(--navy-dark); }
         
         /* --- 3D ENVELOPE INTERACTIVE SECTION --- */
         #envelope-screen { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--navy-dark); z-index: 100; display: flex; justify-content: center; align-items: center; perspective: 1000px; transition: opacity 1s ease 1.5s, visibility 1s ease 1.5s; }
@@ -92,8 +93,9 @@
 </head>
 <body>
 
+    <!-- متعدل هنا ليقرأ اسم الملف الفعلي المرفوع على جيت هاب بالظبط -->
     <audio id="bg-music" loop>
-        <source src="./wedding.mp3" type="audio/mpeg">
+        <source src="./wedding.mp3.mp3" type="audio/mpeg">
     </audio>
 
     <button id="music-toggle" class="music-btn">🎵</button>
@@ -190,13 +192,11 @@
             clickCount++;
             
             if (clickCount === 1) {
-                // الكليكة الأولى: الجواب يفتح والكارت يطلع لفوق والمزيكا تشتعل فوراً
                 envelope.classList.add('open');
                 if (bgMusic) {
                     bgMusic.play().catch(err => console.log("Playback blocked:", err));
                 }
             } else if (clickCount === 2) {
-                // الكليكة التانية: الشاشة تختفي بـ Fade راقي والدعوة الكاملة تظهر
                 screen.classList.add('fade-out');
                 content.classList.remove('hidden');
                 setTimeout(() => { 
