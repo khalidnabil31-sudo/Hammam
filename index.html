@@ -8,6 +8,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght=400;600;700&family=Great+Vibes&family=Montserrat:wght=300;400;600&family=Playfair+Display:ital,wght=0,400;0,600;1,400&display=swap" rel="stylesheet">
     <!-- Rabt el-Theme el-Asly Direct -->
     <link rel="stylesheet" href="https://marwansameh2121.github.io/marwan/style.css">
+    <style>
+        /* Custom Overrides to Ensure Compatibility */
+        body { margin: 0; padding: 0; background-color: #0b1320; font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
+        #main-content.hidden { display: none !important; }
+        #envelope-container.hidden { display: none !important; }
+    </style>
 </head>
 <body>
     <!-- Background Music (Linked to your song.mp3) -->
@@ -16,7 +22,7 @@
     </audio>
 
     <!-- Music Control Button -->
-    <button id="music-toggle" class="music-btn hidden">
+    <button id="music-toggle" class="music-btn hidden" style="display: block !important;">
         <span class="icon">🎵</span>
     </button>
 
@@ -125,7 +131,90 @@
         </footer>
     </div>
 
-    <!-- Scripts -->
-    <script src="https://marwansameh2121.github.io/marwan/script.js"></script>
+    <!-- Self-Contained Script to handle interactivity -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const envelopeContainer = document.getElementById('envelope-container');
+            const mainContent = document.getElementById('main-content');
+            const bgMusic = document.getElementById('bg-music');
+            const musicToggle = document.getElementById('music-toggle');
+
+            // Handle Envelope Click
+            if (envelopeContainer) {
+                envelopeContainer.addEventListener('click', () => {
+                    const wrapper = envelopeContainer.querySelector('.envelope-wrapper');
+                    if (wrapper) wrapper.classList.add('open');
+                    
+                    setTimeout(() => {
+                        envelopeContainer.classList.add('hidden');
+                        if (mainContent) {
+                            mainContent.classList.remove('hidden');
+                            mainContent.classList.add('animate-fade-in');
+                        }
+                        
+                        // Try to play music automatically on open
+                        if (bgMusic) {
+                            bgMusic.play().catch(error => console.log("Audio autoplay blocked:", error));
+                        }
+                    }, 1200);
+                });
+            }
+
+            // Handle Music Toggle Button
+            if (musicToggle && bgMusic) {
+                musicToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    if (bgMusic.paused) {
+                        bgMusic.play();
+                        musicToggle.style.opacity = "1";
+                    } else {
+                        bgMusic.pause();
+                        musicToggle.style.opacity = "0.6";
+                    }
+                });
+            }
+
+            // Simple Particle Background Canvas Effect
+            const canvas = document.getElementById('particle-canvas');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                let particles = [];
+                
+                function resize() {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                }
+                window.addEventListener('resize', resize);
+                resize();
+
+                for(let i=0; i<50; i++) {
+                    particles.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        radius: Math.random() * 2 + 1,
+                        density: Math.random() * 1 + 0.5
+                    });
+                }
+
+                function draw() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    ctx.fillStyle = 'rgba(255, 215, 0, 0.3)'; // Gold dust particles
+                    ctx.beginPath();
+                    for(let i=0; i<particles.length; i++) {
+                        let p = particles[i];
+                        ctx.moveTo(p.x, p.y);
+                        ctx.arc(p.x, p.y, p.radius, 0, Math.PI*2, true);
+                        p.y -= p.density * 0.5;
+                        if(p.y < 0) {
+                            particles[i] = { x: Math.random() * canvas.width, y: canvas.height, radius: p.radius, density: p.density };
+                        }
+                    }
+                    ctx.fill();
+                    requestAnimationFrame(draw);
+                }
+                draw();
+            }
+        });
+    </script>
 </body>
 </html>
