@@ -114,7 +114,8 @@
 <body>
     <canvas id="stars-canvas"></canvas>
     
-    <audio id="bgMusic" src="wedding.mp3.mp3" loop preload="auto"></audio>
+    <!-- تم تعديل اسم الملف هنا ليعمل بشكل سليم ومباشر -->
+    <audio id="bgMusic" src="wedding.mp3" loop preload="auto"></audio>
 
     <div id="vinyl-wrapper" onclick="toggleMusic()" title="Play / Pause">
         <div class="vinyl-disc" id="vinylDisc">
@@ -141,6 +142,7 @@
     <div id="invite-page">
         <div class="invite-inner">
             
+            <!-- Header Section -->
             <div class="reveal" id="r1" style="text-align:center;">
                 <p class="eyebrow">With love in our hearts, we invite you to celebrate with us</p>
                 <div class="ornament"><div class="ornament-line"></div><div class="ornament-dot">◆</div><div class="ornament-line"></div></div>
@@ -149,6 +151,7 @@
                 <p class="hero-sub">Meet us at the start of our forever</p>
             </div>
 
+            <!-- Quote Section -->
             <div class="reveal" id="r2">
                 <div class="ornament"><div class="ornament-line"></div><div class="ornament-dot">◆</div><div class="ornament-line"></div></div>
                 <div class="romantic-box">
@@ -158,6 +161,7 @@
                 </div>
             </div>
 
+            <!-- Details Section -->
             <div class="reveal" id="r3">
                 <div class="ornament"><div class="ornament-line"></div><div class="ornament-dot">◆</div><div class="ornament-line"></div></div>
                 <p class="section-title">The Details</p>
@@ -179,6 +183,7 @@
                 </div>
             </div>
 
+            <!-- RSVP Section -->
             <div class="reveal" id="r4">
                 <div class="ornament"><div class="ornament-line"></div><div class="ornament-dot">◆</div><div class="ornament-line"></div></div>
                 <div class="rsvp-card">
@@ -189,14 +194,16 @@
                 </div>
             </div>
 
+            <!-- Footer Signature -->
             <div class="reveal" id="rFooter">
                 <div class="ornament"><div class="ornament-line"></div><div class="ornament-dot">◆</div><div class="ornament-line"></div></div>
-                <div class="footer-sig">Farah x Hammam</div>
+                <div class="footer-sig" style="text-align: center; font-family: 'Dancing Script', cursive; color: var(--gold); font-size: 2rem;">Farah x Hammam</div>
             </div>
             
         </div>
     </div>
 
+    <!-- RSVP Modal Windows -->
     <div class="modal-overlay" id="rsvpModal">
         <div class="modal-box">
             <button class="modal-close" onclick="closeRsvpModal()">✕</button>
