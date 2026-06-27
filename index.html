@@ -4,20 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Farah & Hammam Engagement Invitation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght=400;600;700&family=Great+Vibes&family=Montserrat:wght=300;400;600&family=Playfair+Display:ital,wght=0,400;0,600;1,400&family=Cairo:wght=300;400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <!-- Combined Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght=400;600;700&family=Great+Vibes&family=Montserrat:wght=300;400;600&family=Playfair+Display:ital,wght=0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+    <!-- Background Music -->
     <audio id="bg-music" loop>
-        <source src="music.mp3" type="audio/mpeg">
+        <source src="./music.mp3" type="audio/mpeg">
     </audio>
 
+    <!-- Music Control Button -->
     <button id="music-toggle" class="music-btn hidden">
         <span class="icon">🎵</span>
     </button>
 
+    <!-- Canvas for Particle Background -->
     <canvas id="particle-canvas"></canvas>
 
+    <!-- Section 1: The Interactive Envelope -->
     <div id="envelope-container" class="active">
         <div class="envelope-wrapper">
             <div class="envelope">
@@ -26,7 +31,7 @@
                 <div class="letter">
                     <div class="letter-content">
                         <div class="initials">F & H</div>
-                        <p class="arabic-welcome">يتشرفان بدعوتكم لحضور حفل الخطوبة</p>
+                        <p class="welcome-text">We Cordially Invite You To Our Engagement</p>
                         <p class="tap-instruction">Tap to Open</p>
                     </div>
                 </div>
@@ -34,27 +39,33 @@
         </div>
     </div>
 
+    <!-- Main Content Container -->
     <div id="main-content" class="hidden">
+        <!-- Hero Section -->
         <header class="hero-section">
             <div class="hero-overlay"></div>
             <div class="hero-text animate-fade-in">
+                <div class="ornament"><div class="ornament-line"></div><div class="ornament-dot">♦</div><div class="ornament-line"></div></div>
                 <h1 class="main-title">Farah & Hammam</h1>
-                <div class="divider">♦</div>
+                <span class="ring-float">💍</span>
                 <p class="subtitle">Meet us at the start of our forever</p>
             </div>
         </header>
 
+        <!-- Quote Section -->
         <section class="quote-section text-center">
             <div class="container">
                 <p class="quote">"In a world full of temporary things, we found something real."</p>
                 <div class="mini-divider"></div>
-                <p class="invite-text">With love in our hearts, we invite you to celebrate this special occasion with us.</p>
+                <p class="invite-text">With love in our hearts, we invite you to celebrate our engagement with us.</p>
             </div>
         </section>
 
+        <!-- Details Grid Section -->
         <section class="details-section">
             <div class="container">
                 <div class="details-grid">
+                    <!-- Date Card -->
                     <div class="detail-card">
                         <div class="card-icon">📅</div>
                         <h3>The Date</h3>
@@ -62,6 +73,7 @@
                         <p class="card-sub">Thursday</p>
                     </div>
 
+                    <!-- Time Card -->
                     <div class="detail-card">
                         <div class="card-icon">⏰</div>
                         <h3>The Time</h3>
@@ -69,6 +81,7 @@
                         <p class="card-sub">Cairo Time</p>
                     </div>
 
+                    <!-- Venue Card -->
                     <div class="detail-card">
                         <div class="card-icon">📍</div>
                         <h3>The Venue</h3>
@@ -80,10 +93,12 @@
             </div>
         </section>
 
+        <!-- RSVP Form Section -->
         <section class="rsvp-section">
             <div class="container text-center">
                 <h2>Are You Coming?</h2>
                 <p>Please confirm your attendance</p>
+                
                 <form id="rsvp-form" action="https://formspree.io/f/your_id_here" method="POST" class="rsvp-form-element">
                     <div class="form-group">
                         <input type="text" name="name" placeholder="Your Full Name" required>
@@ -103,11 +118,13 @@
             </div>
         </section>
 
+        <!-- Footer -->
         <footer class="main-footer">
             <p>Made with ❤️ for Farah & Hammam</p>
         </footer>
     </div>
 
-    <script src="script.js"></script>
+    <!-- Scripts -->
+    <script src="./script.js"></script>
 </body>
 </html>
