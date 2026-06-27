@@ -6,7 +6,7 @@
     <title>Farah & Hammam 💍</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght=0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght=0,300;0,400;0,600;1,400&family=Dancing+Script:wght=600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght=0,400;0,600;1,400&family=Cormorant+Garamond:ital,wght=0,300;0,400;0,500;1,300;1,400&family=Monsieur+La+Doulaise&family=Cinzel:wght@400;500&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
@@ -29,7 +29,7 @@
         .vinyl-disc.spinning { animation-play-state: running; }
         @keyframes vinylSpin { to { transform: rotate(360deg); } }
         .vinyl-label { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 24px; height: 24px; border-radius: 50%; background: radial-gradient(circle at 38% 32%, #F8D7DA, #DCA29A 50%, #8b6014); display: flex; align-items: center; justify-content: center; }
-        .vinyl-label span { font-family: 'Playfair Display', serif; font-size: 5.5px; color: #071D39; font-weight: 700; text-align: center; }
+        .vinyl-label span { font-family: 'Cinzel', serif; font-size: 6px; color: #071D39; font-weight: 700; text-align: center; }
         .vinyl-needle { position: absolute; top: 2px; right: -14px; width: 34px; height: 2.5px; background: linear-gradient(to left, #888, #ddd, #aaa); transform-origin: right center; transform: rotate(20deg); border-radius: 2px; transition: transform 0.6s ease; }
         .vinyl-needle::before { content: ''; position: absolute; right: -1px; top: -5px; width: 12px; height: 12px; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #ccc, #888); }
         #vinyl-wrapper:not(.playing) .vinyl-needle { transform: rotate(0deg); }
@@ -50,7 +50,7 @@
 
         .wax-seal { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 75px; height: 75px; z-index: 20; }
         .seal-disc { width: 100%; height: 100%; background: radial-gradient(circle at 37% 30%, #FCEFF1 0%, #F8D7DA 42%, #DCA29A 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 5px 20px rgba(0,0,0,0.4); position: relative; transition: transform 0.3s ease; border: 1px solid #DCA29A; }
-        .seal-label { font-family: 'Playfair Display', serif; color: #071D39; font-size: 0.64rem; letter-spacing: 0.5px; text-align: center; line-height: 1.45; font-weight: bold; }
+        .seal-label { font-family: 'Cinzel', serif; color: #071D39; font-size: 0.75rem; letter-spacing: 0.5px; text-align: center; line-height: 1.45; font-weight: bold; }
         .env-wrapper.opening .wax-seal { animation: crackSeal 0.5s ease forwards; }
         @keyframes crackSeal { 0% { transform: translate(-50%,-50%) scale(1) rotate(0deg); opacity: 1; } 100% { transform: translate(-50%,-50%) scale(0) rotate(22deg); opacity: 0; } }
 
@@ -69,38 +69,39 @@
         .ornament-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, rgba(248,215,218,0.3), transparent); }
         .ornament-dot { color: var(--gold); font-size: 0.65rem; opacity: 0.65; }
         
-        .eyebrow { font-family: 'Cormorant Garamond', serif; color: var(--gold); font-size: 0.85rem; letter-spacing: 4px; text-transform: uppercase; font-weight: 300; text-align: center; margin-bottom: 10px; }
-        .hero-names { font-family: 'Dancing Script', cursive; color: var(--cream); font-size: clamp(3.8rem, 12vw, 5.8rem); line-height: 1.0; text-align: center; text-shadow: 0 0 60px rgba(248,215,218,0.15); }
-        .and-word { font-family: 'Playfair Display', serif; font-style: italic; color: var(--gold); font-size: 1.9rem; display: block; margin: 0.1rem 0; }
+        .eyebrow { font-family: 'Cormorant Garamond', serif; color: var(--gold); font-size: 0.95rem; letter-spacing: 4px; text-transform: uppercase; font-style: italic; font-weight: 300; text-align: center; margin-bottom: 15px; }
+        /* خط Monsieur La Doulaise الفرنسي الراقي للأسماء */
+        .hero-names { font-family: 'Monsieur La Doulaise', cursive; color: var(--cream); font-size: clamp(4.5rem, 15vw, 7.5rem); line-height: 0.75; text-align: center; text-shadow: 0 0 60px rgba(248,215,218,0.15); padding: 1.5rem 0; }
+        .and-word { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--gold); font-size: 2.2rem; display: block; margin: 0.5rem 0; font-weight: 300; }
         .ring-float { font-size: 3rem; display: block; text-align: center; margin: 1.3rem 0; animation: floatRing 4s ease-in-out infinite; }
         @keyframes floatRing { 0%,100% { transform: translateY(0) rotate(-4deg); } 50% { transform: translateY(-12px) rotate(4deg); } }
-        .hero-sub { text-align: center; font-family: 'Cormorant Garamond', serif; color: var(--gold); font-size: 1.1rem; font-style: italic; letter-spacing: 1px; margin-top: 0.8rem; }
+        .hero-sub { text-align: center; font-family: 'Cormorant Garamond', serif; color: var(--gold); font-size: 1.15rem; font-style: italic; letter-spacing: 2px; margin-top: 0.8rem; }
         
-        .romantic-box { text-align: center; padding: 2rem 1rem; background: rgba(255,255,255,0.01); border: 1px solid rgba(248,215,218,0.1); border-radius: 12px; }
-        .romantic-quote { font-family: 'Playfair Display', serif; font-style: italic; color: rgba(247,238,223,0.95); font-size: clamp(1.2rem, 3vw, 1.55rem); line-height: 1.85; font-weight: 400; }
+        .romantic-box { text-align: center; padding: 2.5rem 1.5rem; background: rgba(255,255,255,0.01); border: 1px solid rgba(248,215,218,0.08); border-radius: 16px; backdrop-filter: blur(2px); }
+        .romantic-quote { font-family: 'Cormorant Garamond', serif; font-style: italic; color: rgba(247,238,223,0.9); font-size: clamp(1.3rem, 3.5vw, 1.7rem); line-height: 1.8; font-weight: 300; letter-spacing: 0.5px; }
         
-        .section-title { font-family: 'Playfair Display', serif; color: var(--cream); font-size: 1.65rem; font-weight: 400; text-align: center; margin-bottom: 1.6rem; }
+        .section-title { font-family: 'Cinzel', serif; color: var(--cream); font-size: 1.45rem; font-weight: 400; letter-spacing: 4px; text-transform: uppercase; text-align: center; margin-bottom: 1.8rem; }
         .details-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-        .detail-item { background: linear-gradient(135deg, rgba(248,215,218,0.05), rgba(248,215,218,0.01)); border: 1px solid rgba(248,215,218,0.15); border-radius: 12px; padding: 1.6rem; text-align: center; transition: all 0.3s; }
-        .detail-item:hover { border-color: var(--gold); background: rgba(248,215,218,0.04); }
-        .detail-label { font-family: 'Cormorant Garamond', serif; color: var(--gold); font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 0.5rem; }
-        .detail-value { font-family: 'Playfair Display', serif; color: var(--cream); font-size: 1.25rem; }
+        .detail-item { background: linear-gradient(135deg, rgba(248,215,218,0.04), rgba(248,215,218,0.01)); border: 1px solid rgba(248,215,218,0.12); border-radius: 12px; padding: 1.8rem; text-align: center; transition: all 0.3s ease; }
+        .detail-item:hover { border-color: var(--gold); background: rgba(248,215,218,0.05); }
+        .detail-label { font-family: 'Cinzel', serif; color: var(--gold); font-size: 0.75rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 0.6rem; }
+        .detail-value { font-family: 'Cormorant Garamond', serif; color: var(--cream); font-size: 1.4rem; font-weight: 300; }
         
-        .map-link { display: inline-block; margin-top: 1.5rem; padding: 0.9rem 3rem; background: linear-gradient(135deg, #F8D7DA, #DCA29A); color: #071D39; font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; border-radius: 8px; text-decoration: none; transition: transform 0.25s ease, box-shadow 0.25s ease; }
+        .map-link { display: inline-block; margin-top: 1.5rem; padding: 0.9rem 3rem; background: linear-gradient(135deg, #F8D7DA, #DCA29A); color: #071D39; font-family: 'Cinzel', serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; border-radius: 8px; text-decoration: none; transition: transform 0.25s ease, box-shadow 0.25s ease; }
         .map-link:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(248,215,218,0.25); }
 
-        .rsvp-card { background: rgba(15, 45, 82, 0.4); border: 1px solid rgba(248,215,218,0.15); border-radius: 12px; padding: 2.5rem; text-align: center; margin-top: 2rem; }
-        .btn-rsvp { display: inline-block; padding: 0.9rem 3.5rem; background: linear-gradient(135deg, #F8D7DA, #DCA29A); color: #071D39; font-family: 'Cormorant Garamond', serif; font-size: 1rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; transition: all 0.3s; }
+        .rsvp-card { background: rgba(15, 45, 82, 0.3); border: 1px solid rgba(248,215,218,0.12); border-radius: 16px; padding: 2.5rem; text-align: center; margin-top: 2rem; }
+        .btn-rsvp { display: inline-block; padding: 0.9rem 3.5rem; background: linear-gradient(135deg, #F8D7DA, #DCA29A); color: #071D39; font-family: 'Cinzel', serif; font-size: 0.85rem; font-weight: 500; letter-spacing: 3px; text-transform: uppercase; border: none; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; }
         .btn-rsvp:hover { transform: translateY(-3px); box-shadow: 0 12px 28px rgba(248,215,218,0.25); }
-        .rsvp-confirmed { font-family: 'Playfair Display', serif; color: var(--gold-light); font-size: 1.2rem; padding: 0.9rem 2.5rem; border: 1px solid rgba(248,215,218,0.35); border-radius: 8px; display: inline-block; }
+        .rsvp-confirmed { font-family: 'Cormorant Garamond', serif; font-style: italic; color: var(--gold-light); font-size: 1.3rem; padding: 0.9rem 2.5rem; border: 1px solid rgba(248,215,218,0.25); border-radius: 8px; display: inline-block; }
 
         .modal-overlay { position: fixed; inset: 0; background: rgba(7,29,57,0.85); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 1.2rem; backdrop-filter: blur(4px); }
         .modal-overlay.show { display: flex; }
         .modal-box { background: linear-gradient(160deg, #0F2D52 0%, #071D39 100%); border: 1px solid rgba(248,215,218,0.25); border-radius: 16px; padding: 2.4rem 2rem; max-width: 380px; width: 100%; text-align: center; position: relative; box-shadow: 0 30px 80px rgba(0,0,0,0.6); }
         .modal-close { position: absolute; top: 12px; right: 14px; background: none; border: none; color: rgba(247,238,223,0.5); font-size: 1.2rem; cursor: pointer; }
-        .modal-title { font-family: 'Playfair Display', serif; color: var(--cream); font-size: 1.4rem; margin-bottom: 1.6rem; }
-        .modal-input { width: 100%; padding: 0.8rem 1rem; margin-bottom: 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(248,215,218,0.25); border-radius: 8px; color: var(--cream); font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; outline: none; }
-        .modal-label { display: block; text-align: left; font-family: 'Cormorant Garamond', serif; color: rgba(248,215,218,0.7); font-size: 0.78rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.4rem; }
+        .modal-title { font-family: 'Cinzel', serif; color: var(--cream); font-size: 1.2rem; letter-spacing: 2px; margin-bottom: 1.6rem; text-transform: uppercase; }
+        .modal-input { width: 100%; padding: 0.8rem 1rem; margin-bottom: 1rem; background: rgba(255,255,255,0.05); border: 1px solid rgba(248,215,218,0.25); border-radius: 8px; color: var(--cream); font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; outline: none; }
+        .modal-label { display: block; text-align: left; font-family: 'Cinzel', serif; color: rgba(248,215,218,0.7); font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.4rem; }
         .modal-msg { font-family: 'Cormorant Garamond', serif; color: #ff9a9a; font-style: italic; font-size: 0.9rem; min-height: 1.2rem; }
         
         @media (max-width: 540px) {
@@ -108,14 +109,14 @@
             .wax-seal { width: 60px; height: 60px; }
             .details-grid { grid-template-columns: 1fr; }
             #vinyl-wrapper { top: 12px; right: 12px; }
+            .hero-names { padding: 0.8rem 0; }
         }
     </style>
 </head>
 <body>
     <canvas id="stars-canvas"></canvas>
     
-    <!-- تم تعديل اسم الملف هنا ليعمل بشكل سليم ومباشر -->
-    <audio id="bgMusic" src="wedding.mp3" loop preload="auto"></audio>
+    <audio id="bgMusic" src="wedding.mp3.mp3" loop preload="auto"></audio>
 
     <div id="vinyl-wrapper" onclick="toggleMusic()" title="Play / Pause">
         <div class="vinyl-disc" id="vinylDisc">
@@ -142,16 +143,14 @@
     <div id="invite-page">
         <div class="invite-inner">
             
-            <!-- Header Section -->
             <div class="reveal" id="r1" style="text-align:center;">
                 <p class="eyebrow">With love in our hearts, we invite you to celebrate with us</p>
                 <div class="ornament"><div class="ornament-line"></div><div class="ornament-dot">◆</div><div class="ornament-line"></div></div>
-                <div class="hero-names">Farah <span class="and-word">&</span> Hammam</div>
+                <div class="hero-names">Farah <span class="and-word">x</span> Hammam</div>
                 <span class="ring-float">💍</span>
                 <p class="hero-sub">Meet us at the start of our forever</p>
             </div>
 
-            <!-- Quote Section -->
             <div class="reveal" id="r2">
                 <div class="ornament"><div class="ornament-line"></div><div class="ornament-dot">◆</div><div class="ornament-line"></div></div>
                 <div class="romantic-box">
@@ -161,14 +160,13 @@
                 </div>
             </div>
 
-            <!-- Details Section -->
             <div class="reveal" id="r3">
                 <div class="ornament"><div class="ornament-line"></div><div class="ornament-dot">◆</div><div class="ornament-line"></div></div>
                 <p class="section-title">The Details</p>
                 <div class="details-grid">
                     <div class="detail-item">
                         <p class="detail-label">📅 Date</p>
-                        <p class="detail-value">16 / 7 / 2026</p>
+                        <p class="detail-value">16 / 07 / 2026</p>
                     </div>
                     <div class="detail-item">
                         <p class="detail-label">⏰ Time</p>
@@ -178,32 +176,29 @@
                 
                 <div class="detail-item" style="margin-top: 16px;">
                     <p class="detail-label">📍 Venue</p>
-                    <p class="detail-value" style="font-size: 1.4rem; font-weight: 600;">Helnan Palace</p>
+                    <p class="detail-value" style="font-size: 1.5rem; font-weight: 400; font-family: 'Cormorant Garamond', serif; letter-spacing: 1px;">Helnan Palace</p>
                     <a class="map-link" href="https://maps.google.com/?q=Helnan+Palestine+Hotel+Alexandria" target="_blank" rel="noopener">Open in Maps 🧭</a>
                 </div>
             </div>
 
-            <!-- RSVP Section -->
             <div class="reveal" id="r4">
                 <div class="ornament"><div class="ornament-line"></div><div class="ornament-dot">◆</div><div class="ornament-line"></div></div>
                 <div class="rsvp-card">
-                    <p class="rsvp-note" style="margin-bottom: 1.5rem;">We would be honored by your presence</p>
+                    <p class="rsvp-note" style="margin-bottom: 1.5rem; font-style: italic;">We would be honored by your presence</p>
                     <div id="rsvpActionArea">
                         <button class="btn-rsvp" onclick="openRsvpModal()">RSVP Here ✦</button>
                     </div>
                 </div>
             </div>
 
-            <!-- Footer Signature -->
             <div class="reveal" id="rFooter">
                 <div class="ornament"><div class="ornament-line"></div><div class="ornament-dot">◆</div><div class="ornament-line"></div></div>
-                <div class="footer-sig" style="text-align: center; font-family: 'Dancing Script', cursive; color: var(--gold); font-size: 2rem;">Farah x Hammam</div>
+                <div class="footer-sig" style="text-align: center; font-family: 'Monsieur La Doulaise', cursive; color: var(--gold); font-size: 3.5rem; padding: 1rem 0;">Farah x Hammam</div>
             </div>
             
         </div>
     </div>
 
-    <!-- RSVP Modal Windows -->
     <div class="modal-overlay" id="rsvpModal">
         <div class="modal-box">
             <button class="modal-close" onclick="closeRsvpModal()">✕</button>
@@ -211,8 +206,8 @@
             <label class="modal-label" for="guestName">Your Full Name</label>
             <input type="text" id="guestName" class="modal-input" placeholder="e.g., Ahmed Ali" autocomplete="off">
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 0.5rem;">
-                <button class="btn-rsvp" style="padding: 0.8rem 0; width: 100%; font-size: 0.9rem;" onclick="submitRsvp(true)">Accepts 💍</button>
-                <button class="btn-rsvp" style="padding: 0.8rem 0; width: 100%; font-size: 0.9rem; background: linear-gradient(135deg, #333, #111); color: #ccc;" onclick="submitRsvp(false)">Regrets ✨</button>
+                <button class="btn-rsvp" style="padding: 0.8rem 0; width: 100%; font-size: 0.75rem;" onclick="submitRsvp(true)">Accepts 💍</button>
+                <button class="btn-rsvp" style="padding: 0.8rem 0; width: 100%; font-size: 0.75rem; background: linear-gradient(135deg, #333, #111); color: #ccc;" onclick="submitRsvp(false)">Regrets ✨</button>
             </div>
             <p id="modalErrorMsg" class="modal-msg"></p>
         </div>
