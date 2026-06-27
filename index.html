@@ -5,71 +5,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Farah & Hammam Engagement Invitation</title>
     <!-- Fonts Ashyak & Premium -->
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght=0,400;0,600;0,700;1,400&family=Montserrat:wght=300;400;500&family=Alex+Brush&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght=0,400;0,600;0,700;1,400&family=Montserrat:wght=300;400;600&family=Alex+Brush&display=swap" rel="stylesheet">
     <style>
-        /* Navy Blue & Blush Pink Premium Theme */
-        body { margin: 0; padding: 0; background-color: #0A2240; color: #F9E0E2; font-family: 'Montserrat', sans-serif; overflow-x: hidden; text-align: center; }
+        /* Exact Navy Blue & Blush Pink Palette from Image */
+        :root {
+            --navy-dark: #071D39;      /* الكحلي الداكن الفخم */
+            --navy-card: #0F2D52;      /* كحلي ملكي للكروت */
+            --blush-pink: #F8D7DA;     /* الـ Blush الوردي الصافي */
+            --blush-soft: #FCEFF1;     /* روز خفيف جداً للخلفيات */
+            --rose-gold: #DCA29A;      /* روز جولد للكتابة الهادية */
+        }
+
+        body { margin: 0; padding: 0; background-color: var(--navy-dark); color: var(--blush-pink); font-family: 'Montserrat', sans-serif; overflow-x: hidden; text-align: center; }
         .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
         
         /* Background Particle Canvas (Blush Soft Dust) */
         #particle-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
         
         /* Music Control */
-        .music-btn { position: fixed; top: 20px; right: 20px; z-index: 999; background: rgba(249, 224, 226, 0.15); border: 1px solid rgba(249, 224, 226, 0.4); color: #F9E0E2; padding: 12px; border-radius: 50%; cursor: pointer; font-size: 20px; display: none; transition: all 0.3s; }
-        .music-btn:hover { background: #F9E0E2; color: #0A2240; }
+        .music-btn { position: fixed; top: 20px; right: 20px; z-index: 999; background: rgba(248, 215, 218, 0.2); border: 1px solid var(--blush-pink); color: var(--blush-pink); padding: 12px; border-radius: 50%; cursor: pointer; font-size: 20px; display: none; transition: all 0.3s; }
+        .music-btn:hover { background: var(--blush-pink); color: var(--navy-dark); }
         
-        /* Envelope Section (Navy & Blush Folders) */
-        #envelope-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #0A2240; z-index: 100; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: opacity 0.8s ease; }
-        .envelope { width: 320px; height: 220px; background: #113254; border: 2px solid #F9E0E2; border-radius: 12px; display: flex; justify-content: center; align-items: center; box-shadow: 0 15px 35px rgba(0,0,0,0.6); position: relative; transition: transform 0.5s ease; }
-        .envelope:hover { transform: scale(1.03); border-color: #E0A899; }
-        .envelope-content { color: #F9E0E2; }
-        .envelope-content h2 { font-family: 'Cormorant Garamond', serif; font-size: 36px; margin: 0; letter-spacing: 3px; font-weight: 600; color: #F9E0E2; }
-        .envelope-content p { font-family: 'Montserrat', sans-serif; font-size: 12px; margin-top: 5px; opacity: 0.8; letter-spacing: 2px; }
-        .open-txt { font-family: 'Alex Brush', cursive; font-size: 28px; color: #E0A899; margin-top: 15px; }
+        /* Premium Wedding Envelope Styling */
+        #envelope-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--navy-dark); z-index: 100; display: flex; justify-content: center; align-items: center; cursor: pointer; transition: all 0.8s ease-in-out; }
+        
+        .wedding-envelope { width: 340px; height: 240px; background: var(--navy-card); border: 3px double var(--blush-pink); border-radius: 16px; box-shadow: 0 20px 50px rgba(0,0,0,0.6); position: relative; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 20px; box-sizing: border-box; transition: transform 0.4s ease; overflow: hidden; }
+        .wedding-envelope:hover { transform: scale(1.04); border-color: var(--rose-gold); }
+        
+        /* Royal Seal Accent */
+        .envelope-seal { width: 60px; height: 60px; background: var(--blush-pink); border-radius: 50%; display: flex; justify-content: center; align-items: center; color: var(--navy-dark); font-size: 24px; font-weight: bold; font-family: 'Cormorant Garamond', serif; box-shadow: 0 4px 10px rgba(0,0,0,0.3); margin-bottom: 15px; border: 2px solid var(--rose-gold); }
+        
+        .wedding-envelope h2 { font-family: 'Cormorant Garamond', serif; font-size: 34px; margin: 0; letter-spacing: 3px; font-weight: 600; color: var(--blush-pink); text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+        .wedding-envelope p { font-family: 'Montserrat', sans-serif; font-size: 11px; margin: 8px 0 0 0; opacity: 0.8; letter-spacing: 3px; font-weight: 300; }
+        .click-to-open { font-family: 'Alex Brush', cursive; font-size: 32px; color: var(--rose-gold); margin-top: 20px; }
         
         /* Main Layout Control */
         .hidden { display: none !important; }
-        #main-content { position: relative; z-index: 2; padding-top: 60px; opacity: 0; transition: opacity 1s ease; }
+        #main-content { position: relative; z-index: 2; padding-top: 60px; opacity: 0; transition: opacity 1.2s ease-in-out; }
         #main-content.visible { opacity: 1; }
         
         /* Typography & Structure */
-        h1.main-title { font-family: 'Cormorant Garamond', serif; font-size: 48px; color: #F9E0E2; margin: 15px 0; letter-spacing: 2px; font-weight: 400; }
-        .subtitle { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; color: #E0A899; letter-spacing: 1px; }
-        .ornament { color: #E0A899; font-size: 14px; margin: 15px 0; display: flex; justify-content: center; align-items: center; gap: 10px; }
-        .ornament-line { width: 65px; height: 1px; background: #E0A899; opacity: 0.4; }
-        .ring-float { font-size: 32px; display: inline-block; animation: float 3s ease-in-out infinite; margin: 10px 0; opacity: 0.9; }
+        h1.main-title { font-family: 'Cormorant Garamond', serif; font-size: 52px; color: var(--blush-pink); margin: 15px 0; letter-spacing: 2px; font-weight: 400; text-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+        .subtitle { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 24px; color: var(--rose-gold); letter-spacing: 1px; }
+        .ornament { color: var(--rose-gold); font-size: 14px; margin: 20px 0; display: flex; justify-content: center; align-items: center; gap: 10px; }
+        .ornament-line { width: 70px; height: 1px; background: var(--rose-gold); opacity: 0.5; }
+        .ring-float { font-size: 34px; display: inline-block; animation: float 3s ease-in-out infinite; margin: 10px 0; }
         
-        /* Quote */
-        .quote-section { padding: 45px 20px; background: rgba(17, 50, 84, 0.4); margin: 40px 0; border-top: 1px solid rgba(249,224,226,0.15); border-bottom: 1px solid rgba(249,224,226,0.15); }
-        .quote { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 26px; color: #F9E0E2; max-width: 750px; margin: 0 auto; line-height: 1.4; }
-        .invite-text { max-width: 600px; margin: 20px auto 0; font-weight: 300; font-size: 14px; line-height: 1.7; color: #cbd5e1; letter-spacing: 0.5px; }
+        /* Quote Section (Blush Background Accent) */
+        .quote-section { padding: 50px 20px; background: rgba(15, 45, 82, 0.5); margin: 40px 0; border-top: 1px solid rgba(248, 215, 218, 0.2); border-bottom: 1px solid rgba(248, 215, 218, 0.2); }
+        .quote { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 28px; color: var(--blush-pink); max-width: 750px; margin: 0 auto; line-height: 1.4; }
+        .invite-text { max-width: 600px; margin: 20px auto 0; font-weight: 300; font-size: 14px; line-height: 1.8; color: var(--blush-soft); letter-spacing: 0.5px; }
         
         /* Cards Grid */
         .details-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin: 50px 0; padding: 0 10px; }
-        .detail-card { background: #113254; border: 1px solid rgba(249,224,226,0.15); padding: 35px 25px; width: 260px; border-radius: 12px; box-shadow: 0 8px 25px rgba(0,0,0,0.4); transition: all 0.3s; }
-        .detail-card:hover { transform: translateY(-5px); border-color: #E0A899; }
-        .card-icon { font-size: 32px; margin-bottom: 15px; opacity: 0.9; }
-        .detail-card h3 { font-family: 'Cormorant Garamond', serif; color: #E0A899; margin: 0 0 15px 0; font-size: 22px; letter-spacing: 1px; }
-        .card-main { font-family: 'Cormorant Garamond', serif; font-size: 26px; font-weight: 600; margin: 0 0 5px 0; color: #F9E0E2; }
-        .card-sub { font-size: 13px; color: #94a3b8; margin: 0; letter-spacing: 1px; }
+        .detail-card { background: var(--navy-card); border: 1px solid rgba(248, 215, 218, 0.2); padding: 40px 25px; width: 260px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.4); transition: all 0.3s ease; }
+        .detail-card:hover { transform: translateY(-5px); border-color: var(--blush-pink); box-shadow: 0 15px 35px rgba(248, 215, 218, 0.1); }
+        .card-icon { font-size: 34px; margin-bottom: 15px; }
+        .detail-card h3 { font-family: 'Cormorant Garamond', serif; color: var(--rose-gold); margin: 0 0 15px 0; font-size: 24px; letter-spacing: 1px; }
+        .card-main { font-family: 'Cormorant Garamond', serif; font-size: 28px; font-weight: 600; margin: 0 0 5px 0; color: var(--blush-pink); }
+        .card-sub { font-size: 13px; color: var(--blush-soft); opacity: 0.8; margin: 0; letter-spacing: 1px; }
         
         /* Map Button */
-        .maps-btn { display: inline-block; margin-top: 18px; background: transparent; border: 1px solid #E0A899; color: #E0A899; padding: 8px 24px; text-decoration: none; border-radius: 6px; font-size: 13px; font-weight: 500; transition: all 0.3s; letter-spacing: 0.5px; }
-        .maps-btn:hover { background: #E0A899; color: #0A2240; }
+        .maps-btn { display: inline-block; margin-top: 20px; background: transparent; border: 1px solid var(--blush-pink); color: var(--blush-pink); padding: 9px 26px; text-decoration: none; border-radius: 8px; font-size: 13px; font-weight: 500; transition: all 0.3s; letter-spacing: 0.5px; }
+        .maps-btn:hover { background: var(--blush-pink); color: var(--navy-dark); }
         
         /* RSVP Section */
-        .rsvp-section { padding: 60px 20px; background: rgba(17, 50, 84, 0.6); border-top: 1px solid rgba(249,224,226,0.1); }
-        .rsvp-section h2 { font-family: 'Cormorant Garamond', serif; color: #F9E0E2; font-size: 36px; margin: 0 0 10px 0; font-weight: 400; letter-spacing: 1px; }
+        .rsvp-section { padding: 60px 20px; background: rgba(15, 45, 82, 0.7); border-top: 1px solid rgba(248, 215, 218, 0.15); }
+        .rsvp-section h2 { font-family: 'Cormorant Garamond', serif; color: var(--blush-pink); font-size: 40px; margin: 0 0 10px 0; font-weight: 400; letter-spacing: 1px; }
         .rsvp-form-element { max-width: 420px; margin: 35px auto 0; }
-        .form-group { margin-bottom: 20px; }
-        .form-group input, .form-group select { width: 100%; padding: 14px; background: #0A2240; border: 1px solid rgba(249,224,226,0.25); color: #F9E0E2; border-radius: 6px; box-sizing: border-box; font-size: 14px; transition: border-color 0.3s; }
-        .form-group input:focus, .form-group select:focus { border-color: #E0A899; outline: none; }
-        .form-group input::placeholder { color: rgba(249,224,226,0.4); }
-        .submit-btn { background: #F9E0E2; color: #0A2240; border: none; padding: 14px 40px; font-size: 15px; font-weight: 600; border-radius: 6px; cursor: pointer; width: 100%; transition: all 0.3s; letter-spacing: 1px; }
-        .submit-btn:hover { background: #E0A899; color: #0A2240; }
+        .form-group { margin-bottom: 22px; }
+        .form-group input, .form-group select { width: 100%; padding: 15px; background: var(--navy-dark); border: 1px solid rgba(248, 215, 218, 0.3); color: var(--blush-pink); border-radius: 8px; box-sizing: border-box; font-size: 14px; font-family: 'Montserrat', sans-serif; transition: border-color 0.3s; }
+        .form-group input:focus, .form-group select:focus { border-color: var(--blush-pink); outline: none; }
+        .form-group input::placeholder { color: rgba(248, 215, 218, 0.4); }
+        
+        .submit-btn { background: var(--blush-pink); color: var(--navy-dark); border: none; padding: 15px 40px; font-size: 15px; font-weight: 600; border-radius: 8px; cursor: pointer; width: 100%; transition: all 0.3s; letter-spacing: 1px; }
+        .submit-btn:hover { background: var(--blush-soft); transform: translateY(-1px); }
         
         /* Footer */
-        .main-footer { padding: 50px 20px; font-size: 12px; color: #94a3b8; opacity: 0.8; font-weight: 300; }
+        .main-footer { padding: 60px 20px; font-size: 12px; color: var(--blush-pink); opacity: 0.6; font-weight: 300; }
 
         @keyframes float {
             0% { transform: translateY(0px); }
@@ -80,26 +93,25 @@
     </style>
 </head>
 <body>
-    <!-- Chill Soft Romantic Piano Music Link -->
+    <!-- Real Royalty Wedding March Instrumental Music (No Games Style) -->
     <audio id="bg-music" loop>
-        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        <source src="https://assets.mixkit.co/music/preview/mixkit-wedding-march-2826.mp3" type="audio/mpeg">
     </audio>
 
     <button id="music-toggle" class="music-btn">🎵</button>
     <canvas id="particle-canvas"></canvas>
 
-    <!-- Interactive Folder / Envelope -->
+    <!-- Luxury Interactive Wedding Folder -->
     <div id="envelope-container">
-        <div class="envelope">
-            <div class="envelope-content">
-                <h2>F & H</h2>
-                <p>ENGAGEMENT INVITATION</p>
-                <div class="open-txt pulse">Click to Open</div>
-            </div>
+        <div class="wedding-envelope">
+            <div class="envelope-seal">F&H</div>
+            <h2>Farah & Hammam</h2>
+            <p>ENGAGEMENT INVITATION</p>
+            <div class="click-to-open pulse">Click to Open</div>
         </div>
     </div>
 
-    <!-- Main Content -->
+    <!-- Main Invitation Content -->
     <div id="main-content" class="hidden">
         <header class="hero-section">
             <div class="container">
@@ -146,7 +158,7 @@
         <section class="rsvp-section">
             <div class="container">
                 <h2>Are You Coming?</h2>
-                <p style="color: #E0A899; font-size: 14px;">Please confirm your attendance</p>
+                <p style="color: var(--rose-gold); font-size: 14px;">Please confirm your attendance</p>
                 <form id="rsvp-form" class="rsvp-form-element">
                     <div class="form-group"><input type="text" placeholder="Your Full Name" required></div>
                     <div class="form-group">
@@ -179,7 +191,7 @@
                 document.getElementById('music-toggle').style.display = 'block';
                 const bgMusic = document.getElementById('bg-music');
                 if (bgMusic) {
-                    bgMusic.play().catch(e => console.log("Audio blocked", e));
+                    bgMusic.play().catch(e => console.log("Audio play caught:", e));
                 }
             }, 800);
         });
@@ -190,17 +202,17 @@
             if (bgMusic.paused) { bgMusic.play(); } else { bgMusic.pause(); }
         });
 
-        // Background Blush Particles
+        // Background Gentle Dust Particles
         const canvas = document.getElementById('particle-canvas');
         if (canvas) {
             const ctx = canvas.getContext('2d');
             let particles = [];
             function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
             window.addEventListener('resize', resize); resize();
-            for(let i=0; i<40; i++) { particles.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, r: Math.random()*2+0.5, d: Math.random()*0.3+0.1 }); }
+            for(let i=0; i<45; i++) { particles.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, r: Math.random()*1.8+0.5, d: Math.random()*0.25+0.1 }); }
             function draw() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                ctx.fillStyle = 'rgba(249, 224, 226, 0.25)';
+                ctx.fillStyle = 'rgba(248, 215, 218, 0.25)';
                 ctx.beginPath();
                 for(let i=0; i<particles.length; i++) {
                     let p = particles[i]; ctx.moveTo(p.x, p.y); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2, true);
