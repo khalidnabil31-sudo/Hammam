@@ -3,24 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Wedding Invitation</title>
+  <title>Farah & Hammam - Invitation</title>
+  
+  <!-- Premium Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Monsieur+La+Doulaise&display=swap" rel="stylesheet">
+
   <style>
-    /* Premium Navy & Pink Gradient Background */
-    body {
+    /* Global Reset */
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
+    }
+
+    /* Premium Navy & Rose Pink Gradient Background */
+    body {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-family: 'Playfair Display', serif;
-      /* Rich blending of deep luxury navy and elegant rose pink accents */
-      background: linear-gradient(135deg, #0B132B 0%, #1C2541 40%, #D4A373 70%, #F4ACB7 100%);
+      font-family: 'Cormorant Garamond', serif;
+      /* Deep luxury navy blending seamlessly into soft blush and rose pink tones */
+      background: linear-gradient(135deg, #0B132B 0%, #16223F 35%, #DDA15E 70%, #F4ACB7 100%);
       background-size: 400% 400%;
-      animation: gradientMove 15s ease infinite;
+      animation: gradientMove 12s ease infinite;
       color: #FFFFFF;
       overflow-x: hidden;
+      padding: 20px;
     }
 
     @keyframes gradientMove {
@@ -29,25 +41,136 @@
       100% { background-position: 0% 50%; }
     }
 
-    /* Keep all your old styles exactly as they were below */
-    .container {
+    /* Outer Invitation Frame */
+    .invitation-card {
       text-align: center;
-      padding: 40px;
-      border: 1px solid rgba(244, 172, 183, 0.3); /* Subtle pink border accent */
-      background: rgba(11, 19, 43, 0.75);
-      backdrop-filter: blur(10px);
-      border-radius: 8px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-      max-width: 500px;
-      width: 90%;
+      padding: 50px 30px;
+      border: 1px solid rgba(244, 172, 183, 0.25);
+      background: rgba(11, 19, 43, 0.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-radius: 12px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+      max-width: 550px;
+      width: 100%;
+      position: relative;
+    }
+
+    /* Elegant Typography Styles */
+    .subtitle {
+      font-weight: 300;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      color: #F4ACB7; /* Soft accent pink */
+      margin-bottom: 20px;
+    }
+
+    .names {
+      font-family: 'Monsieur La Doulaise', cursive;
+      font-size: 4.5rem;
+      color: #F4ACB7;
+      line-height: 1.1;
+      margin: 25px 0;
+      text-shadow: 0 2px 10px rgba(244, 172, 183, 0.2);
+    }
+
+    .ampersand {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 2.5rem;
+      display: block;
+      color: #FFFFFF;
+      margin: 5px 0;
+    }
+
+    .details {
+      font-size: 1.25rem;
+      font-weight: 400;
+      letter-spacing: 1px;
+      line-height: 1.8;
+      margin-bottom: 35px;
+      color: #E2E8F0;
+    }
+
+    .location-title {
+      font-weight: 600;
+      color: #FFFFFF;
+    }
+
+    /* Premium Action Buttons */
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+      margin-top: 20px;
+    }
+
+    .btn {
+      display: inline-block;
+      width: 85%;
+      max-width: 280px;
+      padding: 12px 25px;
+      font-family: 'Cormorant Garamond', serif;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #0B132B;
+      background: #F4ACB7;
+      border: 1px solid #F4ACB7;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.4s ease;
+    }
+
+    .btn:hover {
+      background: transparent;
+      color: #F4ACB7;
+      box-shadow: 0 0 15px rgba(244, 172, 183, 0.4);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: #FFFFFF;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: #FFFFFF;
+      border-color: #FFFFFF;
+      box-shadow: none;
     }
   </style>
 </head>
 <body>
 
-  <div class="container">
-    <!-- Your existing invitation content stays here -->
-    <h2>Save the Date</h2>
+  <!-- Main Invitation Content Frame -->
+  <div class="invitation-card">
+    <div class="subtitle">Save the Date</div>
+    
+    <div class="names">
+      Farah 
+      <span class="ampersand">&</span> 
+      Hammam
+    </div>
+    
+    <div class="details">
+      <p>Together with their families,</p>
+      <p>they joyfully invite you to celebrate their engagement</p>
+      <br>
+      <p class="location-title">Helnan Palestine Hotel</p>
+      <p>Alexandria, Egypt</p>
+    </div>
+
+    <!-- Actions -->
+    <div class="btn-group">
+      <a href="https://maps.google.com" target="_blank" class="btn">View Location</a>
+      <button class="btn btn-secondary" onclick="alert('Thank you for confirming your presence!')">Confirm Attendance</button>
+    </div>
   </div>
 
   <!-- Hidden Audio Element with the explicit double extension -->
@@ -58,24 +181,23 @@
   <script>
     const audio = document.getElementById('wedding-audio');
 
-    // Force the audio to start at second 23 as soon as it's ready to play
+    // Automatically jump to 23 seconds when audio metadata maps out
     audio.addEventListener('loadedmetadata', function() {
       audio.currentTime = 23;
     });
 
-    // Backup listener to ensure it skips even on slower network connections
+    // Fallback sync layer for different browser loading states
     audio.addEventListener('canplay', function() {
       if (audio.currentTime < 23) {
         audio.currentTime = 23;
       }
     });
 
-    // Interaction handler to trigger play (required by modern browser security)
+    // Unlocks browser autoplay protections safely on the first user interaction
     document.addEventListener('click', function() {
       if (audio.paused) {
-        // Double check time stamps right at the play strike
         audio.currentTime = 23;
-        audio.play().catch(err => console.log("Audio playback delayed: ", err));
+        audio.play().catch(err => console.log("Audio play request caught: ", err));
       }
     }, { once: true });
   </script>
