@@ -1,12 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<!-- تم تعيين اللغة وتحديد منع الترجمة للمتصفحات هنا -->
+<html lang="en" class="notranslate" translate="no">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- كود منع الترجمة التلقائية من جوجل وسفاري تحت أي ظرف -->
+    <meta name="google" content="notranslate">
     <title>Farah & Hammam 💍</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght=0,400;0,600;1,400&family=Cormorant+Garamond:ital,wght=0,300;0,400;0,500;1,300;1,400&family=Monsieur+La+Doulaise&family=Cinzel:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght=0,400;0,600;1,400&family=Cormorant+Garamond:ital,wght=0,300;0,400;0,500;1,300;1,400&family=Monsieur+La+Doulaise&family=Cinzel:wght=400;500&display=swap" rel="stylesheet">
     <style>
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
@@ -22,13 +25,14 @@
             --env-shadow: rgba(0,0,0,0.55); 
         }
         
-        /* Updated with your new gradient colors: weaving premium rose-pinks into the deep navy base */
         body { 
             background: linear-gradient(135deg, #062340 0%, #0C345C 45%, #E2B2B8 85%, #F5D6DA 100%); 
             background-size: 400% 400%;
             animation: gradientBgMove 16s ease infinite;
             font-family: 'Cormorant Garamond', serif; 
-            overflow-x: hidden; 
+            overflow-x: hidden;
+            /* حماية إضافية من الترجمة على مستوى الـ CSS */
+            translate: no !important;
         }
 
         @keyframes gradientBgMove {
@@ -51,7 +55,6 @@
         #vinyl-wrapper:not(.playing) .vinyl-needle { transform: rotate(0deg); }
         .vinyl-icon { text-align: center; font-size: 0.6rem; color: var(--blush-pink); opacity: 0.7; letter-spacing: 1px; margin-top: 5px; font-family: 'Cormorant Garamond', serif; }
 
-        /* Updated with background layer blending your original navy layout with subtle soft pink hints */
         #envelope-screen { position: fixed; inset: 0; background: radial-gradient(ellipse at 50% 40%, var(--navy-card) 0%, var(--navy-dark) 60%, rgba(245, 214, 218, 0.1) 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 500; transition: transform 1.4s cubic-bezier(0.65, 0, 0.35, 1), opacity 0.7s ease 0.9s; }
         #envelope-screen.away { transform: translateY(-100%); opacity: 0; pointer-events: none; }
         .hint { font-family: 'Cormorant Garamond', serif; color: var(--blush-pink); opacity: 0.6; font-size: 0.82rem; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 2.8rem; animation: breathe 2.8s ease-in-out infinite; cursor: pointer; }
@@ -76,7 +79,6 @@
         .petal { position: fixed; top: -40px; pointer-events: none; z-index: 50; border-radius: 0% 60% 0% 60%; animation: petalFall linear forwards; }
         @keyframes petalFall { to { transform: translateY(115vh) translateX(var(--drift,0px)) rotate(var(--spin,360deg)); opacity: 0.25; } }
 
-        /* Smooth background transitions with active pink-navy blend */
         #invite-page { position: relative; z-index: 1; min-height: 100vh; background: linear-gradient(180deg, var(--navy-dark) 0%, var(--navy-card) 40%, rgba(226, 178, 184, 0.15) 75%, var(--navy-dark) 100%); opacity: 0; transition: opacity 1.3s ease 0.5s; }
         #invite-page.visible { opacity: 1; }
         .invite-inner { max-width: 700px; margin: 0 auto; padding: 6rem 2rem 5rem; }
@@ -133,7 +135,6 @@
 <body>
     <canvas id="stars-canvas"></canvas>
     
-    <!-- Explicit targeted double extension string -->
     <audio id="bgMusic" src="wedding.mp3.mp3" loop preload="auto"></audio>
 
     <div id="vinyl-wrapper" onclick="toggleMusic()" title="Play / Pause">
@@ -242,12 +243,10 @@
         
         let musicStarted = false;
 
-        // Force jumps straight to second 23 as soon as metadata loads
         bgMusic.addEventListener('loadedmetadata', function() {
             bgMusic.currentTime = 23;
         });
 
-        // Backup safety handler to enforce timeline sync
         bgMusic.addEventListener('canplay', function() {
             if (bgMusic.currentTime < 23) {
                 bgMusic.currentTime = 23;
@@ -308,7 +307,6 @@
             if (envelope.classList.contains('opening')) return;
             envelope.classList.add('opening');
             
-            // Sync time check instantly inside the primary trigger action event 
             bgMusic.currentTime = 23;
             bgMusic.play().then(() => {
                 musicStarted = true;
@@ -316,7 +314,7 @@
                 vinylDisc.classList.add('spinning');
                 vinylIcon.innerText = "⏸ pause";
             }).catch(err => {
-                console.log("Playback prevented by browser, fallback to button:", err);
+                console.log("Playback prevented", err);
                 musicStarted = true;
                 vinylWrapper.classList.add('visible');
                 vinylIcon.innerText = "▶ play";
